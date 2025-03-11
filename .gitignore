@@ -1,0 +1,11 @@
+# OSX
+*.DS_Store
+
+# IDEs
+.idea
+*.iml
+.vscode
+
+# This project
+**/yarn.lock
+node_modules/
