@@ -29,10 +29,6 @@ export const ColorSwatches: React.FC = () => (
         <div className="swatch swatch--cortex-plugin-accent" />
       </div>
       <div className="swatch-container">
-        <div>--cortex-plugin-accent:</div>
-        <div className="swatch swatch--cortex-plugin-accent" />
-      </div>
-      <div className="swatch-container">
         <div>--cortex-plugin-destructive:</div>
         <div className="swatch swatch--cortex-plugin-destructive" />
       </div>
