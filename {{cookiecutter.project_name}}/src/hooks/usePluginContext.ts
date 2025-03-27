@@ -17,7 +17,6 @@ export const usePluginContext = (): IPluginContext => {
 
   useEffect(() => {
     const handleMessage = (event) => {
-      console.log("got event", event);
       if (event.data?.type === 'context') {
         setContext(event.data?.data);
       }
