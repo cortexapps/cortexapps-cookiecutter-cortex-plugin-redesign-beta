@@ -1,3 +1,41 @@
+/*
+Plugin styling is driven by a "CSS API". The Cortex plugin host will inject CSS variables after an init message is
+received. The variables and their usage is as follows:
+
+--cortex-plugin-background
+  * Primary background (black/white)
+
+--cortex-plugin-foreground
+  * Primary foreground (white/black)
+
+--cortex-plugin-primary
+  * Text color (contrasts with background)
+
+--cortex-plugin-secondary
+  * Text color (contrasts with background)
+
+--cortex-plugin-muted
+  * Text color (contrasts with background)
+
+--cortex-plugin-accent
+  * Brand color (configurable)
+
+--cortex-plugin-destructive
+  * Error display background
+
+--cortex-plugin-destructive-foreground
+  * Error display text
+
+--cortex-plugin-border
+  * Border color
+
+--cortex-plugin-input
+  * Input background
+
+--cortex-plugin-ring
+  * Focus ring color
+*/
+
 body,
 html {
   background-color: var(--cortex-plugin-background);
@@ -146,9 +184,6 @@ html {
 }
 .swatch--cortex-plugin-muted {
   background-color: var(--cortex-plugin-muted);
-}
-.swatch--cortex-plugin-accent {
-  background-color: var(--cortex-plugin-accent);
 }
 .swatch--cortex-plugin-accent {
   background-color: var(--cortex-plugin-accent);
