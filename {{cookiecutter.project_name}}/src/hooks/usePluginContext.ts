@@ -16,6 +16,9 @@ export const usePluginContext = (): IPluginContext => {
   const [context, setContext] = useState<any>(null);
 
   useEffect(() => {
+    // initialize style injection just in case we don't have postMessage
+    CortexApi.pluginInit();
+
     const handleMessage = (event) => {
       if (event.data?.type === 'context') {
         setContext(event.data?.data);
