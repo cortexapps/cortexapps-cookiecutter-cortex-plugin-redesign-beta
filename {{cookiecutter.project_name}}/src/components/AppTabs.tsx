@@ -5,6 +5,7 @@ import { Tabs } from "radix-ui";
 
 import BasicCards from "./BasicCards";
 import PluginContext from "./PluginContext";
+import EntityDetails from "./EntityDetails";
 import ColorSwatches from "./ColorSwatches";
 import ProxyTest from "./ProxyTest";
 
@@ -23,6 +24,7 @@ export const AppTabs: React.FC = () => {
   const tabRoutes: TabRoute[] = [
     { label: "Basic", path: "/basic", element: <BasicCards /> },
     { label: "Context", path: "/context", element: <PluginContext /> },
+    { label: "Entity", path: "/entity", element: <EntityDetails /> },
     { label: "Colors", path: "/colors", element: <ColorSwatches /> },
     { label: "Proxy", path: "/proxy", element: <ProxyTest /> },
   ];
