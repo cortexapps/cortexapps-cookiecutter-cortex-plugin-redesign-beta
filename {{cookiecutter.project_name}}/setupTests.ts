@@ -1,4 +1,10 @@
 import "@testing-library/jest-dom/extend-expect";
+import { TextEncoder, TextDecoder } from 'util';
+
+// @ts-ignore
+global.TextEncoder = TextEncoder;
+// @ts-ignore
+global.TextDecoder = TextDecoder;
 
 const mockContext = {
   apiBaseUrl: "https://api.cortex.dev",
@@ -26,6 +32,7 @@ const mockContext = {
     name: "Ganesh Datta",
     role: "ADMIN",
   },
+  tag: "example"
 };
 
 jest.mock("@cortexapps/plugin-core/components", () => {
@@ -49,7 +56,7 @@ jest.mock("@cortexapps/plugin-core", () => {
     ...originalModule,
     CortexApi: {
       ...originalModule.CortexApi,
-      getContext: () => {
+      getContext: async () => {
         return mockContext;
       },
     },
