@@ -43,7 +43,7 @@ const EntityDetails: React.FC = () => {
   return (
     <>
       <div className="card">
-        <div className="card-header">Plugin Descriptor</div>
+        <div className="card-header">Entity Descriptor</div>
         <div className="card-body">
           <pre>{JSON.stringify(entity, null, 2)}</pre>
         </div>
