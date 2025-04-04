@@ -1,7 +1,7 @@
 {
-  "name": "martin-plugin",
-  "version": "0.1.0",
-  "license": "MIT",
+  "name": "{{cookiecutter.project_name}}",
+  "version": "{{cookiecutter.version}}",
+  "license": "{{cookiecutter.license}}",
   "dependencies": {
     "@tanstack/react-query": "^5.69.0",
     "@tanstack/react-query-devtools": "^5.69.0",
