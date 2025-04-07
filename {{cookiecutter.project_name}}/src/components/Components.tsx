@@ -111,7 +111,7 @@ export const Components: React.FC = () => {
     <div className="flex flex-col gap-4">
       <Section>
         <Heading>Badges</Heading>
-        <Subsection className="">
+        <Subsection className="flex-row flex-wrap gap-2">
           <Badge>Default</Badge>
           <Badge variant="secondary">Secondary</Badge>
           <Badge variant="destructive">Destructive</Badge>
@@ -127,7 +127,7 @@ export const Components: React.FC = () => {
 
       <Section>
         <Heading>Buttons</Heading>
-        <Subsection className="">
+        <Subsection className="flex-row flex-wrap gap-2">
           <Button>Normal button</Button>
           <Button disabled>Disabled button</Button>
           <Button variant="secondary">Secondary button</Button>
@@ -309,7 +309,7 @@ export const Components: React.FC = () => {
         </Subsection>
       </Section>
       <Section>
-        <Heading>Selects</Heading>
+        <Heading>Tabs</Heading>
         <Subsection>See outer component for tab example</Subsection>
       </Section>
       <Section>
