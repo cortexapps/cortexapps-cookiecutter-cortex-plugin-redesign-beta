@@ -59,7 +59,7 @@ export const AppTabs: React.FC = () => {
             {tabRoutes.map((route, index) => (
               <TabsContent
                 className="tab-content"
-                style={{ minHeight: "100%" }}
+                style={ { minHeight: "100%" } }
                 key={index}
                 value={route.path}
               >
