@@ -46,7 +46,7 @@ export const ProxyTest: React.FC = () => {
 
   return (
     <>
-      <div className="card" style={{ height: "100%" }}>
+      <div className="card" style={ { height: "100%" } }>
         <div className="card-header">Proxy Test</div>
         <div className="card-body">
           <form onSubmit={handleSubmit}>
