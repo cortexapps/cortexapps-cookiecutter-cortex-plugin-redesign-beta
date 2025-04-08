@@ -4,17 +4,15 @@ import App from "./App";
 
 describe("App", () => {
   it("shows default tab", async () => {
-    const { getByText, debug } = render(<App />);
+    const { getByText } = render(<App />);
 
     await waitFor(() => {
-      expect(getByText(/This is a helpful caption/)).toBeInTheDocument();
+      expect(getByText(/Accept terms and conditions/)).toBeInTheDocument();
     });
-
-    debug();
   });
 
   it("loads content and changes URL when tab is changed", async () => {
-    const { getByText, debug } = render(<App />);
+    const { getByText } = render(<App />);
 
     await waitFor(() => {
       expect(window.location.href).toContain("basic");
@@ -28,19 +26,16 @@ describe("App", () => {
       expect(getByText(/Below is the plugin context object/)).toBeInTheDocument();
       expect(window.location.href).toContain("context");
     });
-    debug();
   });
 
   it("loads deeplinked tab", async () => {
     // Set the URL to the "colors" tab.
     window.history.pushState({}, "Test page", "/?examplePluginRoute=/colors");
 
-    const { getByText, debug } = render(<App />);
+    const { getByText } = render(<App />);
 
     await waitFor(() => {
       expect(getByText(/Theme variable swatches/)).toBeInTheDocument();
     });
-
-    debug();
   });
 });

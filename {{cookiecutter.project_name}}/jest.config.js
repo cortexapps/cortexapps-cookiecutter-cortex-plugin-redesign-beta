@@ -1,3 +1,4 @@
+// jest.config.js
 module.exports = {
   moduleNameMapper: {
     // map static asset imports to a stub file under the assumption they are not important to our tests
@@ -9,10 +10,16 @@ module.exports = {
       "<rootDir>/node_modules/@cortexapps/plugin-core/dist/components.cjs.js",
     "@cortexapps/plugin-core":
       "<rootDir>/node_modules/@cortexapps/plugin-core/dist/index.cjs.js",
+    "@cortexapps/react-plugin-ui":
+      "<rootDir>/node_modules/@cortexapps/react-plugin-ui/dist/index.js",
   },
   setupFilesAfterEnv: ["<rootDir>/setupTests.ts"],
   testEnvironment: "jsdom",
+  transformIgnorePatterns: [
+    // @cortexapps/react-plugin-ui is ESM, transform it to CJS
+    "/node_modules/(?!(?:@cortexapps/react-plugin-ui)/)"
+  ],
   transform: {
-    "^.+\\.tsx?$": "babel-jest",
+    "^.+\\.[tj]sx?$": "babel-jest",
   },
 };
