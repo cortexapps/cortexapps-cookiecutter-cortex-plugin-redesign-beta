@@ -1,4 +1,5 @@
 import { createRoot } from "react-dom/client";
+import "@iframe-resizer/child";
 import App from "./components/App";
 import { CortexApi } from "@cortexapps/plugin-core";
 
