@@ -1,5 +1,6 @@
 import type React from "react";
 
+import { PluginProvider } from "@cortexapps/plugin-core/components"
 import { PluginContextProvider } from "./PluginContextProvider";
 import PluginRouter from "./PluginRouter";
 import PluginStyler from "./PluginStyler";
@@ -17,17 +18,19 @@ export const RoutingPluginProvider: React.FC<RoutingPluginProviderProps> = ({
   initialEntries,
 }) => {
   return (
-    <PluginContextProvider>
-      <PluginStyler>
-        {enableRouting ? (
-          <PluginRouter initialEntries={initialEntries || []}>
-            {children}
-          </PluginRouter>
-        ) : (
-          children
-        )}
-      </PluginStyler>
-    </PluginContextProvider>
+    <PluginProvider>
+      <PluginContextProvider>
+        <PluginStyler>
+          {enableRouting ? (
+            <PluginRouter initialEntries={initialEntries || []}>
+              {children}
+            </PluginRouter>
+          ) : (
+            children
+          )}
+        </PluginStyler>
+      </PluginContextProvider>
+    </PluginProvider>
   );
 };
 
