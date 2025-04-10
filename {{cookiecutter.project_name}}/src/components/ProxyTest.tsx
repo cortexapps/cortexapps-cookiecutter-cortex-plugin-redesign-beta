@@ -79,7 +79,7 @@ export const ProxyTest: React.FC = () => {
           setError(error);
         });
     },
-    [method, headers, body, bodyError]
+    [method, headers, body]
   );
 
   const handleBodyChange = (value: string) => {
