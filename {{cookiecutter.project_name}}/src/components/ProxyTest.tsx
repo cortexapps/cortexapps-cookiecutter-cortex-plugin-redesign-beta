@@ -69,9 +69,15 @@ export const ProxyTest: React.FC = () => {
         fetchOptions.body = JSON.stringify(body);
       }
       fetch(url, fetchOptions)
-        .then((response) => response.json())
+        .then(response => {
+          const contentType = response.headers.get('content-type');
+          if (contentType && contentType.includes('application/json')) {
+            return response.json();
+          } else {
+            return response.text();
+          }
+        })
         .then((data) => {
-          console.log("got response", data);
           setResponse(data);
         })
         .catch((error) => {
@@ -94,7 +100,7 @@ export const ProxyTest: React.FC = () => {
   };
 
   return (
-    <Section className="min-h-[15rem]">
+    <Section className="min-h-[25rem]">
       <Subsection>
         <Heading>
           <CardTitle>Proxy Test</CardTitle>
