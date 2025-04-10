@@ -1,31 +1,38 @@
+import type React from "react";
+
 import {
-  Card,
-  CardContent,
-  CardHeader,
   CardTitle,
 } from "@cortexapps/react-plugin-ui";
+
+import { Heading, Section, Subsection } from "./UtilityComponents";
+import JsonView from "./JsonView";
+
 import { usePluginContextProvider } from "./PluginContextProvider";
-import type React from "react";
 
 const PluginContext: React.FC = () => {
   const context = usePluginContextProvider();
 
   return (
-    <Card>
-      <CardHeader>
+    <Section>
+      <Heading>
         <CardTitle>Plugin Context</CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-2">
+      </Heading>
+      <Subsection className="space-y-4">
         <div>
           Below is the plugin context object. This object is returned from the
           usePluginContextProvider hook available in the PluginContextProvider
           component.
         </div>
-        <div>
-          <pre>{JSON.stringify(context, null, 2)}</pre>
-        </div>
-      </CardContent>
-    </Card>
+        {context && (
+          <div>
+            <JsonView
+              data={context}
+              theme={context.theme}
+            />
+          </div>
+        )}
+      </Subsection>
+    </Section>
   );
 };
 
