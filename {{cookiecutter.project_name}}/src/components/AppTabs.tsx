@@ -37,8 +37,8 @@ export const AppTabs: React.FC = () => {
     { label: "Proxy", path: "/proxy", element: <ProxyTest /> },
   ];
 
-  const handleTabsChange = (value: string) => {
-    navigate(value);
+  const handleTabsChange = (value: string): void => {
+    void navigate(value);
   };
 
   return (
@@ -64,7 +64,7 @@ export const AppTabs: React.FC = () => {
             {tabRoutes.map((route, index) => (
               <TabsContent
                 className="tab-content"
-                style={ { minHeight: "100%" } }
+                style={{ minHeight: "100%" }}
                 key={index}
                 value={route.path}
               >

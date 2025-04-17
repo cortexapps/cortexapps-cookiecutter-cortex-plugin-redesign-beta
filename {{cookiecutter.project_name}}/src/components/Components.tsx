@@ -302,14 +302,14 @@ export const Components: React.FC = () => {
           <Typeahead
             placeholder="Pick a framework"
             value={values}
-            onValueChange={(option) =>
+            onValueChange={(option) => {
               setValues((v) => {
                 if (v.includes(option.value)) {
                   return v.filter((value) => value !== option.value);
                 }
                 return [...v, option.value];
-              })
-            }
+              });
+            }}
             options={FRAMEWORKS}
           >
             <Input className="border-[var(--cortex-plugin-border)]" />

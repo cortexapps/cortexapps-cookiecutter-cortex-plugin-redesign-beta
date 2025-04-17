@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom/extend-expect";
-import { TextEncoder, TextDecoder } from 'util';
+import { TextEncoder, TextDecoder } from "util";
 
 // @ts-ignore
 global.TextEncoder = TextEncoder;
@@ -32,7 +32,7 @@ const mockContext = {
     name: "Ganesh Datta",
     role: "ADMIN",
   },
-  tag: "example"
+  tag: "example",
 };
 
 jest.mock("@cortexapps/plugin-core/components", () => {

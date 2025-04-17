@@ -1,9 +1,6 @@
 import type React from "react";
 
-import {
-  CardTitle,
-  Loader,
-} from "@cortexapps/react-plugin-ui";
+import { CardTitle, Loader } from "@cortexapps/react-plugin-ui";
 
 import { usePluginContextProvider } from "./PluginContextProvider";
 import useEntityDescriptor from "../hooks/useEntityDescriptor";
@@ -15,25 +12,21 @@ import JsonView from "./JsonView";
 
 const EntityDetails: React.FC = () => {
   const context = usePluginContextProvider();
-  const entityTag = context?.entity?.tag || "";
-  const {
-    entity,
-    isLoading: isEntityLoading,
-  } = useEntityDescriptor({ entityTag });
-  const {
-    customData,
-    isLoading: isCustomDataLoading,
-  } = useEntityCustomData({ entityTag });
-  const {
-    customEvents,
-    isLoading: isCustomEventsLoading,
-  } = useEntityCustomEvents({ entityTag });
+  const entityTag = context?.entity?.tag ?? "";
+  const { entity, isLoading: isEntityLoading } = useEntityDescriptor({
+    entityTag,
+  });
+  const { customData, isLoading: isCustomDataLoading } = useEntityCustomData({
+    entityTag,
+  });
+  const { customEvents, isLoading: isCustomEventsLoading } =
+    useEntityCustomEvents({ entityTag });
 
-  const isLoading = isEntityLoading || isCustomDataLoading || isCustomEventsLoading;
+  const isLoading =
+    isEntityLoading || isCustomDataLoading || isCustomEventsLoading;
 
   if (isLoading) {
-    return (
-      <Loader size="large" />);
+    return <Loader size="large" />;
   }
 
   if (!entityTag) {
@@ -48,30 +41,24 @@ const EntityDetails: React.FC = () => {
   return (
     <Section>
       <Heading>
-        <CardTitle>
-          Entity Details
-        </CardTitle>
+        <CardTitle>Entity Details</CardTitle>
       </Heading>
       <div>
-        Below are the entity descriptor, entity custom data and entity custom events for the {context?.entity?.type} {entityTag}.
-        These are fetched from the Cortex REST API and returned by the useEntityDescriptor, useEntityCustomData and useEntityCustomEvents hooks.
+        Below are the entity descriptor, entity custom data and entity custom
+        events for the {context?.entity?.type} {entityTag}. These are fetched
+        from the Cortex REST API and returned by the useEntityDescriptor,
+        useEntityCustomData and useEntityCustomEvents hooks.
       </div>
       <div className="mt-4">
         <strong>Entity Descriptor:</strong>
       </div>
-      <JsonView
-        data={entity}
-        theme={context.theme}
-      />
+      <JsonView data={entity} theme={context.theme} />
       {customData && (
         <>
           <div className="mt-4">
             <strong>Custom Data:</strong>
           </div>
-          <JsonView
-            data={customData}
-            theme={context.theme}
-          />
+          <JsonView data={customData} theme={context.theme} />
         </>
       )}
       {customEvents && (
@@ -79,10 +66,7 @@ const EntityDetails: React.FC = () => {
           <div className="mt-4">
             <strong>Custom Events:</strong>
           </div>
-          <JsonView
-            data={customEvents}
-            theme={context.theme}
-          />
+          <JsonView data={customEvents} theme={context.theme} />
         </>
       )}
     </Section>

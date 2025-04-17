@@ -2,10 +2,7 @@ import type React from "react";
 import { useState, useMemo, useCallback } from "react";
 import CodeMirror from "@uiw/react-codemirror";
 import { json } from "@codemirror/lang-json";
-import {
-  xcodeDark,
-  xcodeLight,
-} from "@uiw/codemirror-themes-all";
+import { xcodeDark, xcodeLight } from "@uiw/codemirror-themes-all";
 
 import {
   Card,
@@ -55,40 +52,44 @@ export const ProxyTest: React.FC = () => {
   const handleSubmit = useCallback(
     (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
-      const formData = new FormData(event.currentTarget);
-      const url = formData.get("url-input") as string;
 
-      setResponse(null);
-      setError(null);
-      console.log(method, url, headers);
-      const fetchOptions: RequestInit = {
-        method,
-        headers,
-      };
-      if (["PUT", "PATCH", "POST"].includes(method)) {
-        fetchOptions.body = JSON.stringify(body);
-      }
-      fetch(url, fetchOptions)
-        .then(response => {
-          const contentType = response.headers.get('content-type');
-          if (contentType && contentType.includes('application/json')) {
-            return response.json();
-          } else {
-            return response.text();
-          }
-        })
-        .then((data) => {
+      const doHandleSubmit = async (
+        event: React.FormEvent<HTMLFormElement>
+      ): Promise<void> => {
+        const formData = new FormData(event.currentTarget);
+        const url = formData.get("url-input") as string;
+
+        setResponse(null);
+        setError(null);
+
+        const fetchOptions: RequestInit = {
+          method,
+          headers,
+        };
+        if (["PUT", "PATCH", "POST"].includes(method)) {
+          fetchOptions.body = JSON.stringify(body);
+        }
+
+        try {
+          const fetchResponse = await fetch(url, fetchOptions);
+          const contentType = fetchResponse.headers.get("content-type");
+          const data = contentType?.includes("application/json")
+            ? await fetchResponse.json()
+            : await fetchResponse.text();
           setResponse(data);
-        })
-        .catch((error) => {
+          setError(null);
+        } catch (error) {
           console.error("error fetching", error);
           setError(error);
-        });
+        }
+      };
+
+      void doHandleSubmit(event);
     },
     [method, headers, body]
   );
 
-  const handleBodyChange = (value: string) => {
+  const handleBodyChange = (value: string): void => {
     setBodyValue(value);
     try {
       const parsed = JSON.parse(value);
@@ -111,7 +112,9 @@ export const ProxyTest: React.FC = () => {
               <Select
                 value={method}
                 name="method-select"
-                onValueChange={(value) => setMethod(value)}
+                onValueChange={(value) => {
+                  setMethod(value);
+                }}
               >
                 <SelectTrigger className="w-[10rem]">
                   <SelectValue placeholder="Method" />
@@ -133,13 +136,12 @@ export const ProxyTest: React.FC = () => {
                 placeholder="Type a URL to fetch"
                 defaultValue={`${apiBaseUrl}/catalog?pageSize=10`}
               />
-              <Button style={ { margin: "auto" } } type="submit">
+              <Button style={{ margin: "auto" }} type="submit">
                 Fetch
               </Button>
               <HeadersPopover
                 headers={headers}
                 onSubmit={(newHeaders) => {
-                  console.log("new headers", newHeaders);
                   setHeaders(newHeaders);
                 }}
               />
@@ -147,9 +149,7 @@ export const ProxyTest: React.FC = () => {
           </div>
           {["PUT", "PATCH", "POST"].includes(method) && (
             <div className="mt-4">
-              <label className="block mb-1 font-semibold">
-                Request Body:
-              </label>
+              <label className="block mb-1 font-semibold">Request Body:</label>
               <CodeMirror
                 value={bodyValue}
                 height="200px"

@@ -15,12 +15,13 @@ export interface UseEntityCustomDataReturn {
   error: Error | null;
 }
 
-export const customDataListToDict = (customData: any[]) => {
-    return customData.reduce((acc, item) => {
-        acc[item.key] = item.value;
-        return acc;
-    }
-    , {});
+export const customDataListToDict = (
+  customData: any[]
+): Record<string, any> => {
+  return customData.reduce((acc, item) => {
+    acc[item.key] = item.value;
+    return acc;
+  }, {});
 };
 
 export const useEntityCustomData = ({
@@ -31,7 +32,9 @@ export const useEntityCustomData = ({
   const query = useQuery({
     queryKey: ["entityCustomData", entityTag],
     queryFn: async () => {
-      return await fetchPaginated(`${apiBaseUrl}/catalog/${entityTag}/custom-data`,);
+      return await fetchPaginated(
+        `${apiBaseUrl}/catalog/${entityTag}/custom-data`
+      );
     },
     enabled: !!apiBaseUrl,
     retry: false,

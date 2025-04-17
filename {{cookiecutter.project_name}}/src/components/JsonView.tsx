@@ -3,17 +3,14 @@ import type React from "react";
 import CodeMirror from "@uiw/react-codemirror";
 import { json } from "@codemirror/lang-json";
 import { EditorView } from "@codemirror/view";
-import {
-  xcodeDark,
-  xcodeLight,
-} from "@uiw/codemirror-themes-all";
+import { xcodeDark, xcodeLight } from "@uiw/codemirror-themes-all";
 
 interface JsonViewProps {
   data: any;
   theme: string;
-};
+}
 
-export const JsonView: React.FC<JsonViewProps> = ({data, theme}) => {
+export const JsonView: React.FC<JsonViewProps> = ({ data, theme }) => {
   const isText = typeof data === "string";
   const isObject = typeof data === "object" && data !== null;
 
@@ -30,7 +27,7 @@ export const JsonView: React.FC<JsonViewProps> = ({data, theme}) => {
         theme={theme === "light" ? xcodeLight : xcodeDark}
         width="100%"
       />
-    )
+    );
   }
 
   return (

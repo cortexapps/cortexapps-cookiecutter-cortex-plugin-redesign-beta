@@ -1,8 +1,6 @@
 import type React from "react";
 
-import {
-  CardTitle,
-} from "@cortexapps/react-plugin-ui";
+import { CardTitle } from "@cortexapps/react-plugin-ui";
 
 import { Heading, Section, Subsection } from "./UtilityComponents";
 import JsonView from "./JsonView";
@@ -25,10 +23,7 @@ const PluginContext: React.FC = () => {
         </div>
         {context && (
           <div>
-            <JsonView
-              data={context}
-              theme={context.theme}
-            />
+            <JsonView data={context} theme={context.theme} />
           </div>
         )}
       </Subsection>

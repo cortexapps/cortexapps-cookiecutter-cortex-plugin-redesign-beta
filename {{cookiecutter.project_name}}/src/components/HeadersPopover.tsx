@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import type React from "react";
+import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import * as Popover from "@radix-ui/react-popover";
 import { Button, Input } from "@cortexapps/react-plugin-ui";
@@ -15,7 +16,10 @@ interface HeadersPopoverProps {
   onSubmit: (headers: Record<string, string>) => void;
 }
 
-const HeadersPopover: React.FC<HeadersPopoverProps> = ({ headers, onSubmit }) => {
+const HeadersPopover: React.FC<HeadersPopoverProps> = ({
+  headers,
+  onSubmit,
+}) => {
   const headersPropItems: HeaderItem[] = Object.entries(headers).map(
     ([headerKey, headerValue]) => ({
       id: uuidv4(),
@@ -23,9 +27,10 @@ const HeadersPopover: React.FC<HeadersPopoverProps> = ({ headers, onSubmit }) =>
       headerValue,
     })
   );
-  const [headerItems, setHeaderItems] = useState<HeaderItem[]>(headersPropItems);
+  const [headerItems, setHeaderItems] =
+    useState<HeaderItem[]>(headersPropItems);
 
-  const updateHeaders = (items: HeaderItem[]) => {
+  const updateHeaders = (items: HeaderItem[]): void => {
     const newHeaders: Record<string, string> = {};
     items.forEach((item) => {
       if (item.headerKey) {
@@ -35,7 +40,7 @@ const HeadersPopover: React.FC<HeadersPopoverProps> = ({ headers, onSubmit }) =>
     onSubmit(newHeaders);
   };
 
-  const handleHeaderKeyChange = (id: string, newKey: string) => {
+  const handleHeaderKeyChange = (id: string, newKey: string): void => {
     setHeaderItems((prev) => {
       const newItems = prev.map((item) =>
         item.id === id ? { ...item, headerKey: newKey } : item
@@ -45,7 +50,7 @@ const HeadersPopover: React.FC<HeadersPopoverProps> = ({ headers, onSubmit }) =>
     });
   };
 
-  const handleHeaderValueChange = (id: string, newValue: string) => {
+  const handleHeaderValueChange = (id: string, newValue: string): void => {
     setHeaderItems((prev) => {
       const newItems = prev.map((item) =>
         item.id === id ? { ...item, headerValue: newValue } : item
@@ -55,7 +60,7 @@ const HeadersPopover: React.FC<HeadersPopoverProps> = ({ headers, onSubmit }) =>
     });
   };
 
-  const addHeader = () => {
+  const addHeader = (): void => {
     const newItem: HeaderItem = {
       id: uuidv4(),
       headerKey: `header-${headerItems.length}`,
@@ -68,7 +73,7 @@ const HeadersPopover: React.FC<HeadersPopoverProps> = ({ headers, onSubmit }) =>
     });
   };
 
-  const removeHeader = (id: string) => {
+  const removeHeader = (id: string): void => {
     setHeaderItems((prev) => {
       const newItems = prev.filter((item) => item.id !== id);
       updateHeaders(newItems);
@@ -79,7 +84,11 @@ const HeadersPopover: React.FC<HeadersPopoverProps> = ({ headers, onSubmit }) =>
   return (
     <Popover.Root>
       <Popover.Trigger asChild>
-        <Button variant="link" className="inline-flex items-center" style={ { margin: "auto" } }>
+        <Button
+          variant="link"
+          className="inline-flex items-center"
+          style={{ margin: "auto" }}
+        >
           Headers ({headerItems.length})
         </Button>
       </Popover.Trigger>
@@ -98,9 +107,9 @@ const HeadersPopover: React.FC<HeadersPopoverProps> = ({ headers, onSubmit }) =>
                 name={`header-key-${item.id}`}
                 placeholder="Header key"
                 value={item.headerKey}
-                onChange={(e) =>
-                  handleHeaderKeyChange(item.id, e.target.value)
-                }
+                onChange={(e) => {
+                  handleHeaderKeyChange(item.id, e.target.value);
+                }}
                 className="w-full sm:w-1/2"
               />
               <Input
@@ -108,14 +117,16 @@ const HeadersPopover: React.FC<HeadersPopoverProps> = ({ headers, onSubmit }) =>
                 name={`header-value-${item.id}`}
                 placeholder="Header value"
                 value={item.headerValue}
-                onChange={(e) =>
-                  handleHeaderValueChange(item.id, e.target.value)
-                }
+                onChange={(e) => {
+                  handleHeaderValueChange(item.id, e.target.value);
+                }}
                 className="w-full sm:w-1/2"
               />
               <Button
                 variant="destructive"
-                onClick={() => removeHeader(item.id)}
+                onClick={() => {
+                  removeHeader(item.id);
+                }}
               >
                 <Trash size={16} weight="bold" />
               </Button>
