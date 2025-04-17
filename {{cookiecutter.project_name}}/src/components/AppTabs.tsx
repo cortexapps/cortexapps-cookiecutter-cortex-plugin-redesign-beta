@@ -2,9 +2,6 @@ import type React from "react";
 
 import { useLocation, useNavigate } from "react-router-dom";
 
-import Components from "./Components";
-import PluginContext from "./PluginContext";
-import ColorSwatches from "./ColorSwatches";
 import {
   Tabs,
   TabsContent,
@@ -13,6 +10,13 @@ import {
   Card,
   CardContent,
 } from "@cortexapps/react-plugin-ui";
+
+import Components from "./Components";
+import PluginContext from "./PluginContext";
+import EntityDetails from "./EntityDetails";
+import ColorSwatches from "./ColorSwatches";
+import ProxyTest from "./ProxyTest";
+
 import "../baseStyles.css";
 
 interface TabRoute {
@@ -28,12 +32,13 @@ export const AppTabs: React.FC = () => {
   const tabRoutes: TabRoute[] = [
     { label: "Components", path: "/basic", element: <Components /> },
     { label: "Context", path: "/context", element: <PluginContext /> },
+    { label: "Entity", path: "/entity", element: <EntityDetails /> },
     { label: "Colors", path: "/colors", element: <ColorSwatches /> },
-    // { label: "Proxy", path: "/proxy", element: <ProxyTest /> },
+    { label: "Proxy", path: "/proxy", element: <ProxyTest /> },
   ];
 
-  const handleTabsChange = (value: string) => {
-    navigate(value);
+  const handleTabsChange = (value: string): void => {
+    void navigate(value);
   };
 
   return (
@@ -59,7 +64,7 @@ export const AppTabs: React.FC = () => {
             {tabRoutes.map((route, index) => (
               <TabsContent
                 className="tab-content"
-                style={ { minHeight: "100%" } }
+                style={{ minHeight: "100%" }}
                 key={index}
                 value={route.path}
               >

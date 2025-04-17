@@ -1,4 +1,6 @@
 import type React from "react";
+import { useState } from "react";
+
 import {
   Badge,
   Breadcrumb,
@@ -37,8 +39,8 @@ import {
   SelectValue,
   Typeahead,
 } from "@cortexapps/react-plugin-ui";
-import { useState, type HTMLAttributes, type ReactNode } from "react";
-import { clsx } from "clsx";
+
+import { Heading, Section, Subsection } from "./UtilityComponents";
 
 const FRAMEWORKS = [
   {
@@ -79,30 +81,6 @@ const FRAMEWORKS = [
     label: `Some Framework ${index}`,
   })),
 ];
-
-const Heading = ({
-  className,
-  ...props
-}: HTMLAttributes<HTMLDivElement>): ReactNode => (
-  <h1 className={clsx("mb-2", className)} {...props} />
-);
-
-const Section = ({
-  className,
-  ...props
-}: HTMLAttributes<HTMLDivElement>): ReactNode => (
-  <div className={clsx("flex flex-col gap-2", className)} {...props} />
-);
-
-const Subsection = ({
-  className,
-  ...props
-}: HTMLAttributes<HTMLDivElement>): ReactNode => (
-  <div
-    className={clsx("flex flex-col gap-2 items-start", className)}
-    {...props}
-  />
-);
 
 export const Components: React.FC = () => {
   const [checked, setChecked] = useState(false);
@@ -324,14 +302,14 @@ export const Components: React.FC = () => {
           <Typeahead
             placeholder="Pick a framework"
             value={values}
-            onValueChange={(option) =>
+            onValueChange={(option) => {
               setValues((v) => {
                 if (v.includes(option.value)) {
                   return v.filter((value) => value !== option.value);
                 }
                 return [...v, option.value];
-              })
-            }
+              });
+            }}
             options={FRAMEWORKS}
           >
             <Input className="border-[var(--cortex-plugin-border)]" />

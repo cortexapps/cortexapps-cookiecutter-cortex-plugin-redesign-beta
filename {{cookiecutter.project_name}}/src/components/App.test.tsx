@@ -20,10 +20,12 @@ describe("App", () => {
     });
 
     const contextTab = getByText("Context");
-    userEvent.click(contextTab);
+    await userEvent.click(contextTab);
 
     await waitFor(() => {
-      expect(getByText(/Below is the plugin context object/)).toBeInTheDocument();
+      expect(
+        getByText(/Below is the plugin context object/)
+      ).toBeInTheDocument();
       expect(window.location.href).toContain("context");
     });
   });

@@ -48,8 +48,30 @@ module.exports = (env, argv) => ({
         ],
       },
 
-      // Allows you to use "<%= require('./file.svg') %>" in your HTML code to get a data URI
-      { test: /\.(png|jpg|gif|webp|svg)$/, loader: "url-loader" },
+      // Allows you to use "<%= require('./file.png') %>" in your HTML code to get a data URI
+      { test: /\.(png|jpg|gif|webp)$/, loader: "url-loader" },
+
+      // Allows you to use import { ReactComponent as Logo } from "./logo.svg" to import SVGs as React components
+      {
+        test: /\.svg$/i,
+        issuer: /\.[jt]sx?$/, // only apply to JS/TS imports
+        use: [
+          {
+            loader: "@svgr/webpack",
+            options: {
+              // svgr options if you need any
+              // e.g. icon: true,
+            },
+          },
+          {
+            loader: "url-loader",
+            options: {
+              limit: 8192,
+              name: "[name].[hash:8].[ext]",
+            },
+          },
+        ],
+      },
     ],
   },
 
