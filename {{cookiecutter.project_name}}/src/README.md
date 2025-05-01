@@ -120,7 +120,7 @@ The plugin ships with five example tabs:
    - Build your component using the information in the **Components**, **Context**, **Entity**, and **Proxy** tabs.
    - Write Jest tests alongside your components, named as `Name.test.tsx`
 
-7. **Cleanup**
+7. **Cleanup**  
    Before release, remove any sample tabs you don’t need. If your plugin is single-page, mount your main component directly under `<App>`.
 
 ---
