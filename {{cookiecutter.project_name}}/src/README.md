@@ -80,7 +80,7 @@ The plugin ships with five example tabs:
 
   The routing plugin provider includes:  
   - `<PluginRouter>`, which wraps React Router and persists URLs in the query string — supports deep links via `useLocation` and `useNavigate`. Routing functionality in the plugin provider is turned on when you provide the `enableRouting` and `initialEntries` props.
-  - `<PluginStyler>`, which injects theme CSS variables into the iframe’s docuemnt element.
+  - `<PluginStyler>`, which injects theme CSS variables into the iframe’s document element.
   - `<PluginContextProvider>`, which exposes `usePluginContext()` for entity, user, theme, and other plugin context.
 
 ## 💻 Recommended Development Workflow
