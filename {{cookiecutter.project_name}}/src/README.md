@@ -102,7 +102,7 @@ The plugin ships with five example tabs:
    This starts a live-reload server for rapid iteration.
 
 4. **Enable dev mode**  
-   In the plugin settings, enable **Dev Mode** so Cortex loads from your local server instead of the published bundle.
+   In the plugin settings, turn **Dev Mode** so Cortex loads from your local server instead of the published bundle. Keep this window open as you do your development so that you can see your changes as you make them.
 
 5. **Add your component**  
    - Create a new file under `src/components/`.  
