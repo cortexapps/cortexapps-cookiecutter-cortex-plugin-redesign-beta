@@ -6,13 +6,13 @@ Welcome! This sample plugin demonstrates a full “batteries included” Cortex 
 
 The plugin ships with five example tabs:
 
-1. **Components**
+1. **Components**  
   Demonstrates the ready-to-use UI components included in `@cortexapps/react-plugin-ui`.
 
-2. **Context** Shows your current plugin context via the `usePluginContextProvider` hook (entity info, user info, theme, and more; available from the `PluginContextProvider` component).
+2. **Context**  
   Shows your current plugin context via the `usePluginContextProvider` hook (entity info, user info, theme, and more; available from the `PluginContextProvider` component).
 
-3. **Entity**  
+4. **Entity**  
   Renders details for the current entity:  
   - Descriptor from the `useEntityDescriptor` hook
   - Custom data from the `useEntityCustomData` hook
