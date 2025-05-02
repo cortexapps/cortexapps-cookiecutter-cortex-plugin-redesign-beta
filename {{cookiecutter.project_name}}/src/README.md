@@ -49,7 +49,7 @@ The plugin ships with five example tabs:
   ```
 
 - **Plugin Shell**  
-  The `<App>` component is wrapped in `<RoutingPluginProvider>`:
+  The main component, `<AppTabs>`, is wrapped in a `<RoutingPluginProvider>`:
   ```tsx
   // src/components/App.tsx
   import type React from "react";
@@ -106,8 +106,9 @@ The plugin ships with five example tabs:
 
 5. **Add your component**  
    - Create a new file under `src/components/`.  
-   - Add a tab in `src/AppTabs.tsx`:
+   - Add a tab in `src/components/AppTabs.tsx`:
     ```tsx
+    // src/components/AppTabs.tsx
     import MyNewComponent from './components/MyNewComponent';
 
     const tabs = [
@@ -118,10 +119,10 @@ The plugin ships with five example tabs:
 
 6. **Develop and test**  
    - Build your component using the information in the **Components**, **Context**, **Entity**, and **Proxy** tabs.
-   - Write Jest tests alongside your components, named as `Name.test.tsx`
+   - Write Jest tests alongside your components, named as `ComponentName.test.tsx`
 
 7. **Cleanup**  
-   Before release, remove any sample tabs you don’t need. If your plugin is single-page, mount your main component directly under `<App>`.
+   Before release, remove any sample tabs you don’t need from the `AppTabs` component. If your plugin is single-page, you can mount your main component directly under the plugin provider and remove the `enableRouting` and `initialEntries` props.
 
 ---
 
